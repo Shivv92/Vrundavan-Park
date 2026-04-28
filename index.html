@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrundavan Park | Premium Residences</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; color: #333; overflow-x: hidden; }
+        
+        .navbar { position: fixed; top: 0; width: 100%; padding: 20px 5vw; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 700; font-size: 1.2rem; color: #8B0000; text-transform: uppercase; letter-spacing: 1px; }
+        nav ul { list-style: none; display: flex; gap: 30px; align-items: center; }
+        nav a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #8B0000; }
+        .btn-primary { background-color: #8B0000; color: white; padding: 10px 24px; border-radius: 4px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #660000; color: white; }
+
+        /* USING LOCAL BUILDING IMAGE FOR THE BACKGROUND */
+        .hero-section { 
+            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; 
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('images/BE 2.JPG.jpeg') center/cover no-repeat; 
+            color: white; padding-top: 80px; 
+        }
+        .hero-content h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; }
+        .hero-content p { font-size: 1.5rem; font-weight: 300; }
+
+        .section-padding { padding: 100px 5vw; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: #8B0000; margin-bottom: 10px; }
+        .section-title p { font-size: 1.2rem; color: #666; }
+
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .amenity-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .amenity-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .amenity-card h3 { color: #8B0000; margin-bottom: 20px; font-size: 1.3rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 12px; }
+        .amenity-card ul { list-style: none; }
+        .amenity-card li { margin-bottom: 15px; position: relative; padding-left: 25px; font-size: 1rem; color: #555; }
+        .amenity-card li::before { content: "✓"; color: #8B0000; position: absolute; left: 0; font-weight: bold; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .gallery-img { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.4s ease; }
+        .gallery-img:hover { transform: scale(1.03); }
+
+        .contact-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .contact-form input { padding: 15px 20px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; font-family: 'Montserrat', sans-serif; outline: none; }
+        .contact-form input:focus { border-color: #8B0000; }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 4vw; }
+            .logo img { height: 30px; }
+            nav ul { gap: 15px; }
+            nav a { font-size: 0.9rem; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            
+            .section-padding { padding: 60px 4vw; }
+            .section-title h2 { font-size: 1.8rem; }
+            .section-title p { font-size: 1rem; }
+            
+            .amenities-grid { grid-template-columns: 1fr; gap: 20px; }
+            .amenity-card { padding: 25px; }
+            
+            .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+            .gallery-img { height: 250px; }
+            
+            .contact-container { padding: 30px 20px; margin: 0 4vw; max-width: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 2rem; letter-spacing: 1px; }
+            .hero-content p { font-size: 1rem; }
+            
+            nav ul { flex-direction: column; gap: 10px; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); padding: 20px; display: none; }
+            nav ul.show { display: flex; }
+            
+            .navbar { position: relative; padding: 10px 4vw; }
+            .menu-toggle { display: block; background: none; border: none; font-size: 1.5rem; color: #333; cursor: pointer; }
+            .navbar > nav { display: none; }
+            .navbar > nav.show { display: block; }
+        }
+
+        .menu-toggle { display: none; }
+        .phone-numbers { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; text-align: center; }
+        .phone-numbers a { color: #8B0000; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.3s; }
+        .phone-numbers a:hover { color: #660000; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="images/IMG_20260428_131606.jpg.jpeg" alt="Logo" style="height: 40px; width: auto;">
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#hero">Project</a></li>
+                <li><a href="#amenities">Amenities</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact" class="btn-primary">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1 class="animate-hero">Vrundavan Park</h1>
+            <p class="animate-hero">A Grand Project of 288 Premium Residences | 1 & 2 BHK</p>
+            <a href="#contact" class="btn-primary animate-hero" style="margin-top: 25px; display: inline-block;">Book a Site Visit</a>
+        </div>
+    </section>
+
+    <section id="amenities" class="section-padding">
+        <div class="section-title">
+            <h2 class="animate-fade">Premium Amenities & Features</h2>
+            <p class="animate-fade">Designed for an elevated lifestyle in Baramati.</p>
+        </div>
+        
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <h3>Interior Excellence</h3>
+                <ul>
+                    <li>P.O.P. Finish in Entire Flat</li>
+                    <li>Premium Furniture Doors</li>
+                    <li>French Doors for Gallery</li>
+                </ul>
+            </div>
+            <div class="amenity-card">
+                <h3>Robust Build</h3>
+                <ul>
+                    <li>Earthquake Resistant R.C.C.</li>
+                    <li>24/7 Water Supply</li>
+                    <li>Ample Parking & Lifts</li>
+                </ul>
+            </div>
+            <div class="amenity-card">
+                <h3>Leisure & Health</h3>
+                <ul>
+                    <li>Landscaped Garden & Club</li>
+                    <li>Open-Air Gym</li>
+                    <li>On-Site Temple</li>
+                </ul>
+            </div>
+            <div class="amenity-card">
+                <h3>Modern Living</h3>
+                <ul>
+                    <li>EV Charging Points</li>
+                    <li>Solar Facility</li>
+                    <li>24/7 CCTV Security</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section-padding" style="background-color: #fff;">
+        <div class="section-title">
+            <h2 class="animate-fade">Project Gallery</h2>
+            <p class="animate-fade">Experience the grandeur of Vrundavan Park.</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <img src="images/baramati-d-1.jpg.jpeg" alt="Baramati Day View 1" class="gallery-img">
+            <img src="images/Baramati_Day_View.PNG" alt="Baramati Day View" class="gallery-img">
+            <img src="images/BE 2.JPG.jpeg" alt="Building Elevation" class="gallery-img">
+            <img src="images/ed71007c-f95f-40a7-ab97-158e229d1c3a.jpg.jpeg" alt="Project View" class="gallery-img">
+            <img src="images/Open Space 2.JPG.jpeg" alt="Open Space" class="gallery-img">
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="section-title">
+            <h2 class="animate-fade">Get in Touch</h2>
+            <p class="animate-fade">Start your journey to a premium lifestyle today.</p>
+        </div>
+
+        <div class="phone-numbers">
+            <p style="margin-bottom: 10px; font-weight: 600;">Call us directly:</p>
+            <a href="tel:+919823461006">📞 +91 9823461006</a>
+            <a href="tel:+919922951515">📞 +91 9922951515</a>
+        </div>
+
+        <div class="contact-container">
+            <form class="contact-form" id="leadForm">
+                <input type="text" id="userName" placeholder="Your Full Name" required>
+                <input type="tel" id="userPhone" placeholder="Your WhatsApp Number" required>
+                <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem;">Send via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".animate-hero", { y: 40, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out", delay: 0.2 });
+            gsap.utils.toArray(".animate-fade").forEach(title => {
+                gsap.from(title, { scrollTrigger: { trigger: title, start: "top 85%" }, y: 30, opacity: 0, duration: 1 });
+            });
+            gsap.from(".amenity-card", { scrollTrigger: { trigger: ".amenities-grid", start: "top 80%" }, y: 50, opacity: 0, duration: 0.8, stagger: 0.15, ease: "back.out(1.2)" });
+            gsap.from(".gallery-img", { scrollTrigger: { trigger: ".gallery-grid", start: "top 80%" }, scale: 0.9, opacity: 0, duration: 1, stagger: 0.2, ease: "power2.out" });
+        });
+
+        document.getElementById('leadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            var name = document.getElementById('userName').value;
+            var phone = document.getElementById('userPhone').value;
+            var message = "Hello, my name is " + name + " and my number is " + phone + ". I am interested in the 1 & 2 BHK flats at Vrundavan Park.";
+            
+            // Send to both numbers
+            var number1 = "919823461006"; // +91 9823461006
+            var number2 = "919922951515"; // +91 9922951515
+            
+            var whatsappUrl1 = "https://wa.me/" + number1 + "?text=" + encodeURIComponent(message);
+            var whatsappUrl2 = "https://wa.me/" + number2 + "?text=" + encodeURIComponent(message);
+            
+            // Open WhatsApp for both numbers
+            window.open(whatsappUrl1, '_blank');
+            setTimeout(function() {
+                window.open(whatsappUrl2, '_blank');
+            }, 1000); // Small delay to avoid popup blockers
+        });
+
+        function toggleMenu() {
+            var nav = document.querySelector('nav');
+            var menu = document.getElementById('nav-menu');
+            nav.classList.toggle('show');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
